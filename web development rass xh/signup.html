@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Campus Bridge Signup</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #0377, #02456A);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .signup-container {
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 5px 10px 18px rgb(9, 13, 15);
+    }
+    .signup-container h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #4f46e5;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: .5rem;
+      color: #374151;
+    }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: .75rem;
+      border: 1px solid #d1d5db;
+      border-radius: .5rem;
+    }
+    .signup-btn {
+      background-color: #4f46e5;
+      color: white;
+      width: 100%;
+      padding: .75rem;
+      border: none;
+      border-radius: .5rem;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .signup-btn:hover {
+      background-color: #4338ca;
+    }
+    .login-link {
+      text-align: center;
+      margin-top: 1rem;
+      color: #374151;
+    }
+    .login-link a {
+      color: #4f46e5;
+      text-decoration: none;
+    }
+    .error {
+      color: red;
+      font-size: 0.85rem;
+      margin-top: 0.3rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="signup-container">
+    <h2>Create Account</h2>
+    <form id="signupForm" onsubmit="return validateSignupForm()">
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" name="fullName" placeholder="Your name" required />
+      </div>
+      <div class="form-group">
+        <label for="userType">User Type</label>
+        <select id="userType" name="userType" required>
+          <option value="">Select User Type</option>
+          <option value="student">Student</option>
+          <option value="teacher">Teacher</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="password" required />
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="password" required />
+        <div id="passwordMismatch" class="error"></div>
+      </div>
+      <button type="submit" class="signup-btn">Sign Up</button>
+    </form>
+    <div class="login-link">
+      Already have an account? <a href="login.html">Log in</a>
+    </div>
+  </div>
+
+  <script>
+    function validateSignupForm() {
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+      const errorDiv = document.getElementById("passwordMismatch");
+
+      if (password !== confirmPassword) {
+        errorDiv.textContent = "Passwords do not match.";
+        return false;
+      } else {
+        errorDiv.textContent = "";
+        // Submit logic here if needed
+        alert("Signup successful!");
+        window.location.href = "login.html"; // Redirect to login
+        return false; // prevent default for demo
+      }
+    }
+   
+  </script>
+</body>
+</html>

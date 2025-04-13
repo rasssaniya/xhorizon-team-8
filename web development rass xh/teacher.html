@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Responsive Trainer Panel</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 240px;
+      background-color: white;
+      color: black;
+      padding: 20px;
+      position: fixed;
+      top: 25px;
+      bottom: 0;
+      left: 0;
+      transform: translateX(0);
+      transition: transform 0.3s ease-in-out;
+      z-index: 1000;
+    }
+
+    .sidebar h2 {
+      margin-bottom: 30px;
+    }
+
+    .sidebar a {
+      display: block;
+      color: black;
+      margin: 15px 0;
+      text-decoration: none;
+    }
+
+    .sidebar a:hover {
+      text-decoration: none;
+      border: 2px solid black;
+      color: white;
+      background-color: #2563eb;
+
+    }
+
+    .toggle-btn {
+      display: none;
+      background-color: white;
+      color: black;
+      border: none;
+      font-size: 22px;
+      padding: 10px 15px;
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 1100;
+      border-radius: 4px;
+    }
+
+    /* Main Content */
+    .main {
+      margin-left: 240px;
+      flex: 1;
+      padding: 20px;
+      background-color: #f3f4f6;
+    }
+
+    .section {
+      background: white;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+    }
+
+    .section h3 {
+      margin-top: 0;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #2563eb;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .analytics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .card {
+      flex: 1;
+      min-width: 180px;
+      background: #e5e7eb;
+      padding: 20px;
+      text-align: center;
+      border-radius: 8px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .toggle-btn {
+        display: block;
+       
+      }
+
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      .sidebar.active {
+        transform: translateX(0);
+      }
+
+      .main {
+        margin-left: 0;
+        padding-top: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Toggle Button for Mobile -->
+  <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <h2>Trainer Panel</h2>
+      <a href="#upload">Upload Content</a>
+      <a href="#assignment">Create Assignment</a>
+      <a href="#analytics">Progress Dashboard</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+      <div class="section" id="upload">
+        <h3>📚 Upload & Schedule Academic Content</h3>
+        <form id="uploadForm">
+          <input type="text" placeholder="Title" required />
+          <select required>
+            <option value="">Select Content Type</option>
+            <option value="pdf">PDF</option>
+            <option value="video">Video</option>
+            <option value="quiz">Quiz</option>
+          </select>
+          <input type="file" required />
+          <input type="date" required />
+          <button type="submit">Upload</button>
+        </form>
+      </div>
+
+      <div class="section" id="assignment">
+        <h3>💻 Create Coding Assignment</h3>
+        <form id="assignmentForm">
+          <input type="text" placeholder="Assignment Title" required />
+          <textarea placeholder="Describe the problem..." rows="4" required></textarea>
+          <input type="text" placeholder="Test Cases (comma-separated)" required />
+          <select required>
+            <option value="">Select Difficulty</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+          <button type="submit">Create Assignment</button>
+        </form>
+      </div>
+
+      <div class="section" id="analytics">
+        <h3>📊 Progress Dashboard</h3>
+        <div class="analytics">
+          <div class="card">
+            <h4>Academic Completion</h4>
+            <p><strong>76%</strong></p>
+          </div>
+          <div class="card">
+            <h4>Coding Progress</h4>
+            <p><strong>58%</strong></p>
+          </div>
+          <div class="card">
+            <h4>Quizzes Attempted</h4>
+            <p><strong>32</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("active");
+    }
+
+    document.getElementById("uploadForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("Content uploaded and scheduled!");
+      this.reset();
+    });
+
+    document.getElementById("assignmentForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("Assignment created!");
+      this.reset();
+    });
+    function toggleSidebar() {
+  document.getElementById("sidebar").classList.toggle("active");
+}
+
+  </script>
+
+</body>
+</html>
